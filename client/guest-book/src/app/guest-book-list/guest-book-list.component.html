@@ -1,0 +1,3 @@
+    <ag-grid-angular style="width:50%; height:50%;" class="ag-theme-alpine" [rowData]="guestBookData | async"
+        [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (firstDataRendered)="onFirstDataRendered($event)">
+    </ag-grid-angular>
