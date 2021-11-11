@@ -3,6 +3,7 @@ import { GuestBookService } from '../services/guest-book.service';
 import { Guest } from '../models/guests.model';
 import { Constants } from '../constants';
 import { Observable } from 'rxjs';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-guest-book-list',
@@ -11,13 +12,19 @@ import { Observable } from 'rxjs';
 })
 export class GuestBookListComponent implements OnInit {
 
-  guestBookData: Observable<Guest[]>;
+  guestBookData: Guest[];
   gridApi;
 
   columnDefs = Constants.GUEST_BOOK_COLUMN_DEFS;
 
-  constructor(private guestService: GuestBookService) {
-    this.guestBookData = this.guestService.getGuestBookData();
+  constructor(private guestService: GuestBookService, private notificationService: NotificationService) {
+    this.guestService.getGuestBookData()
+    .subscribe(res => {
+      this.guestBookData = res;
+    },
+    (err) => {
+      this.notificationService.showFailure("Error while retrieving guest data");
+    });
    }
 
   ngOnInit(): void {

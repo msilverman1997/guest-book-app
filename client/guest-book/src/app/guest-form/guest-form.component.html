@@ -1,1 +1,26 @@
-<p>guest-form works!</p>
+<mat-card style="height: fit-content; width: 25%; align-items: center; margin-top: 25px; margin-bottom: 25px;">
+    <mat-card-content style="text-align: center;">
+        <form [formGroup]="guestForm">
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="first_name">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>last Name</mat-label>
+                <input matInput formControlName="last_name">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>Phone Number</mat-label>
+                <input matInput formControlName="phone_number">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>Message</mat-label>
+                <input matInput formControlName="message">
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <button mat-raised-button [disabled]="!guestForm.valid" (click)="submit()" style="align-self: center;">Submit</button>
+</mat-card>
