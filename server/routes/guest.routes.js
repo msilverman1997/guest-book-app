@@ -6,6 +6,6 @@ const guests = require('../controller/guest.controller.js');
 
 router.post("/guests", guests.create);
 router.get("/guests", guests.findAll);
-router.delete("/guests", guests.delete);
+router.delete("/guests/:id", guests.delete);
 
 module.exports = router;

@@ -32,25 +32,30 @@ exports.findAll = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-    const id = req.body.id;
+    const id = req.params.id;
 
-    Guest.destroy({
-        where: {id: id}
-    }).then(num => {
-        if(num == 1){
-            res.send({
-                message: "Guest Deleted Successfully"
+    Guest.findByPk(id).then(result => {
+        return Guest.destroy({
+            where: {id: id}
+        }).then(num => {
+            if(num == 1){
+                res.send({message: "Guest Deleted Successfully", guest: result});
+            }
+            else{
+                res.send({
+                    message: "Failed to delete guest"
+                });
+        }})
+        .catch(err => {
+            res.status(500).send({
+                message: "Could not delete guest with id " + id
             });
-        }
-        else{
-            res.send({
-                message: "Failed to delete guest"
-            });
-        }
+        });;
     })
     .catch(err => {
         res.status(500).send({
-            message: "Could not delete guest with id " + id
+            message: "Could not find guest with id " + id
         });
-    });
+    });;
+    
 }

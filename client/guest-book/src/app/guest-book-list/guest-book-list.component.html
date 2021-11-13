@@ -1,5 +1,6 @@
-<app-guest-form></app-guest-form>
+<app-guest-form class="form" (newGuest)="createGuest($event)"></app-guest-form>
 <br>
-   <ag-grid-angular style="width:50%; height:50%; align-self: center;" class="ag-theme-alpine" [rowData]="guestBookData"
-        [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (firstDataRendered)="onFirstDataRendered($event)">
+   <ag-grid-angular style="width:100%; height:50%; align-self: center;" class="ag-theme-alpine" [rowData]="guestBookData"
+        [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (firstDataRendered)="onFirstDataRendered($event)"
+        [context]="context">
     </ag-grid-angular>

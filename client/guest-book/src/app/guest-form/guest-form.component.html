@@ -1,26 +1,31 @@
-<mat-card style="height: fit-content; width: 25%; align-items: center; margin-top: 25px; margin-bottom: 25px;">
+<mat-card style="height: fit-content; width: 25%; align-items: center;">
     <mat-card-content style="text-align: center;">
+        <mat-card-title>Guest Book Form</mat-card-title>
         <form [formGroup]="guestForm">
             <mat-form-field appearance="outline">
                 <mat-label>First Name</mat-label>
                 <input matInput formControlName="first_name">
+                <mat-error *ngIf="guestForm.controls.first_name.hasError('required')">First Name is Required</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field appearance="outline">
                 <mat-label>last Name</mat-label>
                 <input matInput formControlName="last_name">
+                <mat-error *ngIf="guestForm.controls.last_name.hasError('required')">Last Name is Required</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field appearance="outline">
                 <mat-label>Phone Number</mat-label>
                 <input matInput formControlName="phone_number">
+                <mat-error *ngIf="guestForm.controls.phone_number.hasError('required')">Phone Number is Required</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field appearance="outline">
                 <mat-label>Message</mat-label>
                 <input matInput formControlName="message">
+                <mat-error *ngIf="guestForm.controls.message.hasError('required')">Message is Required</mat-error>
             </mat-form-field>
         </form>
+        <button mat-raised-button [disabled]="!guestForm.valid" (click)="submit()" style="align-self: center;">Submit</button>
     </mat-card-content>
-    <button mat-raised-button [disabled]="!guestForm.valid" (click)="submit()" style="align-self: center;">Submit</button>
 </mat-card>

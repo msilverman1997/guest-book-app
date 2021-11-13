@@ -4,6 +4,7 @@ import { Guest } from '../models/guests.model';
 import { Constants } from '../constants';
 import { Observable } from 'rxjs';
 import { NotificationService } from '../services/notification.service';
+import { DeleteComponentComponent } from '../delete-component/delete-component.component';
 
 @Component({
   selector: 'app-guest-book-list',
@@ -14,10 +15,19 @@ export class GuestBookListComponent implements OnInit {
 
   guestBookData: Guest[];
   gridApi;
+  context: any;
 
-  columnDefs = Constants.GUEST_BOOK_COLUMN_DEFS;
+  columnDefs = [
+    {field: '', headerName: 'Delete', cellRendererFramework: DeleteComponentComponent, flex: .15},
+    {field: "first_name", headerName: "First Name", flex: .15},
+    {field: "last_name", headerName: "Last Name", flex: .15},
+    {field: "message", headerName: "Message", flex: .55}
+];
 
   constructor(private guestService: GuestBookService, private notificationService: NotificationService) {
+    this.context = {
+      componentParent: this
+    }
     this.guestService.getGuestBookData()
     .subscribe(res => {
       this.guestBookData = res;
@@ -32,12 +42,31 @@ export class GuestBookListComponent implements OnInit {
 
   onFirstDataRendered(params){
     console.log(params);
-    params.api.sizeColumnsToFit();
+    // params.api.sizeColumnsToFit();
   }
 
   onGridReady(params){
     console.log(params);
     this.gridApi = params.api;
+  }
+
+  deleteGuest(guest){
+    this.guestService.deleteGuest(guest.id).subscribe(res => {
+      this.notificationService.showsSuccess(res.message);
+    },
+    (err) => {
+      this.notificationService.showFailure(err.message);
+    })
+  }
+
+  createGuest(guest){
+    this.guestService.createGuest(guest).subscribe(res => {
+      this.notificationService.showsSuccess("Guest entry saved successfully");
+      this.gridApi.applyTransaction({add: [res]});
+    },
+    (err) => {
+      this.notificationService.showFailure("Error occurred while saving guest");
+    })
   }
 
 }

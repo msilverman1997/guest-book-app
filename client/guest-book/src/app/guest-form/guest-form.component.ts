@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Guest, GuestRequest } from '../models/guests.model';
+import { GuestRequest } from '../models/guests.model';
 import { GuestBookService } from '../services/guest-book.service';
 import { NotificationService } from '../services/notification.service';
 
@@ -12,6 +12,8 @@ import { NotificationService } from '../services/notification.service';
 export class GuestFormComponent implements OnInit {
 
   guestForm: FormGroup;
+
+  @Output() newGuest: EventEmitter<GuestRequest> = new EventEmitter();
 
   constructor(private guestService: GuestBookService, private notificationService: NotificationService) {
     this.guestForm = new FormGroup({
@@ -27,12 +29,8 @@ export class GuestFormComponent implements OnInit {
 
   submit(){
     let guest: GuestRequest = this.createGuestRequest();
-    this.guestService.createGuest(guest).subscribe(res => {
-      this.notificationService.showsSuccess("Guest entry saved successfully");
-    },
-    (err) => {
-      this.notificationService.showFailure("Error occurred while saving guest");
-    })
+    this.newGuest.emit(guest);
+    this.guestForm.reset();
   }
 
   createGuestRequest(){

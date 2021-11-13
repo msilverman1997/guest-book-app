@@ -26,6 +26,11 @@ export class GuestBookService {
      .pipe(map(res => res as Guest));
    }
 
+   deleteGuest(id): Observable<Guest> {
+     return this.http.delete(`${this.apiUrl}/guests/${id}`)
+     .pipe(map(res => res as Guest));
+   }
+
 
 
 
