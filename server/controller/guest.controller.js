@@ -11,7 +11,7 @@ exports.create = (req, res) => {
     };
 
     Guest.create(guest).then(data => {
-        res.send(data);
+        res.status(200).json({guest: data});
     })
     .catch(err => {
         res.status(500).send({
@@ -22,7 +22,7 @@ exports.create = (req, res) => {
 
 exports.findAll = (req, res) => {
     Guest.findAll().then(data => {
-        res.send(data);
+        res.status(200).json({guests: data});
     })
     .catch(err => {
         res.status(500).send({
@@ -39,7 +39,7 @@ exports.delete = (req, res) => {
             where: {id: id}
         }).then(num => {
             if(num == 1){
-                res.send({message: "Guest Deleted Successfully", guest: result});
+                res.status(200).json({message: "Guest Deleted Successfully", guest: result});
             }
             else{
                 res.send({

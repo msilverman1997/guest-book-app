@@ -17,6 +17,10 @@ export class GuestBookListComponent implements OnInit {
   gridApi;
   context: any;
 
+  gridOptions = {
+    getRowNodeId: (data) => data.id
+  }
+
   columnDefs = [
     {field: '', headerName: 'Delete', cellRendererFramework: DeleteComponentComponent, flex: .15},
     {field: "first_name", headerName: "First Name", flex: .15},
@@ -40,19 +44,14 @@ export class GuestBookListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onFirstDataRendered(params){
-    console.log(params);
-    // params.api.sizeColumnsToFit();
-  }
-
   onGridReady(params){
-    console.log(params);
     this.gridApi = params.api;
   }
 
   deleteGuest(guest){
     this.guestService.deleteGuest(guest.id).subscribe(res => {
-      this.notificationService.showsSuccess(res.message);
+      this.notificationService.showsSuccess(`Guest ${res.id} deleted`);
+      this.gridApi.applyTransaction({remove: [{id: res.id}]});
     },
     (err) => {
       this.notificationService.showFailure(err.message);

@@ -22,7 +22,7 @@
             <br>
             <mat-form-field appearance="outline">
                 <mat-label>Message</mat-label>
-                <input matInput formControlName="message">
+                <input matInput formControlName="message" maxlength="75">
                 <mat-error *ngIf="guestForm.controls.message.hasError('required')">Message is Required</mat-error>
             </mat-form-field>
         </form>

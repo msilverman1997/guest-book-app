@@ -18,17 +18,17 @@ export class GuestBookService {
 
    getGuestBookData(): Observable<Guest[]>{
     return this.http.get(`${this.apiUrl}/guests`)
-    .pipe(map(res => res as Guest[]))
+    .pipe(map(res => res['guests'] as Guest[]))
    }
 
    createGuest(guest: GuestRequest): Observable<Guest> {
      return this.http.post(`${this.apiUrl}/guests`, guest)
-     .pipe(map(res => res as Guest));
+     .pipe(map(res => res['guest'] as Guest));
    }
 
    deleteGuest(id): Observable<Guest> {
      return this.http.delete(`${this.apiUrl}/guests/${id}`)
-     .pipe(map(res => res as Guest));
+     .pipe(map(res => res['guest'] as Guest));
    }
 
 
