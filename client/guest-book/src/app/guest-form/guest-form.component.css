@@ -1,3 +1,9 @@
 .bolder-letters {
     font-weight: bolder; color:black
 }
+
+mat-card{
+    background-color: rgba(248, 245, 245, 0.5);
+}
+
+
