@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  mysql-db:
+    image: mysql
+    environment: 
+        - MYSQL_ROOT_PASSWORD=123456
+        - MYSQL_DATABASE=guest_book
+        - MYSQL_USER=root
+        - MYSQL_PASSWORD=123456
+    ports:
+      - '27017:27017'
+
+  server:
+    depends_on: 
+        - mysql-db
+    build: server
+    ports:
+      - '5000:5000'
+    # links:
+    #   - mysql-db
+
+  client:
+    depends_on: 
+        - server
+    build: client/guest-book
+    ports:
+      - '4200:4200'
