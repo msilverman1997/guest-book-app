@@ -1,0 +1,32 @@
+<mat-card style="height: fit-content; width: 25%; align-items: center;">
+    <!-- <img mat-card-image src='../assets/HotelLobby.jpeg'> -->
+    <mat-card-content style="text-align: center;">
+        <mat-card-title>Guest Book Form</mat-card-title>
+        <form [formGroup]="guestForm">
+            <mat-form-field appearance="outline">
+                <mat-label class="bolder-letters">First Name</mat-label>
+                <input matInput formControlName="first_name">
+                <mat-error *ngIf="guestForm.controls.first_name.hasError('required')">First Name is Required</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label class="bolder-letters">last Name</mat-label>
+                <input matInput formControlName="last_name">
+                <mat-error *ngIf="guestForm.controls.last_name.hasError('required')">Last Name is Required</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label class="bolder-letters">Phone Number</mat-label>
+                <input matInput formControlName="phone_number">
+                <mat-error *ngIf="guestForm.controls.phone_number.hasError('required')">Phone Number is Required</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label class="bolder-letters">Message</mat-label>
+                <input matInput formControlName="message" maxlength="75">
+                <mat-error *ngIf="guestForm.controls.message.hasError('required')">Message is Required</mat-error>
+            </mat-form-field>
+        </form>
+        <button mat-raised-button [disabled]="!guestForm.valid" (click)="submit()" style="align-self: center; font-weight: bolder; border-style: solid; border-color: black; background-color: green;">Submit</button>
+    </mat-card-content>
+</mat-card>
