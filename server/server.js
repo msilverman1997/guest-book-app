@@ -6,6 +6,13 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require("./models");
 const routes = require('./routes/guest.routes');
+const dbInfo = require('./config/db.config');
+
+console.log(dbInfo.HOST);
+console.log(dbInfo.PASSWORD);
+console.log(dbInfo.DB);
+
+console.log(db.PORT);
 
 db.sequelize.sync();
 
