@@ -10,6 +10,7 @@ Running The Application
 To run the application start by cloning the project onto your local system.
 In the projects root directory run the following command:
   - docker-compose up
+
 This will build and run the container and all necessary services.
 
 After all services are running you can access the application from your localhost
