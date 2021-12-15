@@ -19,3 +19,10 @@ The express server will run on port 5000
 The Angular UI will run on port 4200
 
 Use http://localhost:4200 to access the full application
+
+Future Improvements:
+  - Add Admin vs Guest login
+  - Admin Delete, Guests Add
+  - Add email validation
+  - Add phone number validation
+  - How many times has a guest visited?
