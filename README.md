@@ -21,7 +21,7 @@ The Angular UI will run on port 4200
 Use http://localhost:4200 to access the full application
 
 Future Improvements:
-  - Add Admin vs Guest login
+  - Add Admin login
   - Admin Delete, Guests Add
   - Add email validation
   - Add phone number validation
