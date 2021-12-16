@@ -25,4 +25,5 @@ Future Improvements:
   - Admin Delete, Guests Add
   - Add email validation
   - Add phone number validation
-  - How many times has a guest visited?
+  - Keep track of repeated guests
+  - Admin apporved entries?
