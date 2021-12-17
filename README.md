@@ -20,6 +20,8 @@ The Angular UI will run on port 4200
 
 Use http://localhost:4200 to access the full application
 
+Here is the link to the original challenge: https://challenges.goraft.tech/fullstack/jr/react-express-node-mysql/
+
 Future Improvements:
   - Add Admin login
   - Admin Delete, Guests Add
